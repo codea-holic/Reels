@@ -1,82 +1,112 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 function App() {
-
-  const [list, updateList] = useState([]);
+  const [list, setList] = useState([]);
   const addNewTask = (task) => {
-    console.log(list.length);
-    const listCopy = [...list]; // copy value by value
-    listCopy.push(task);
-    updateList(listCopy);
+    let copyOfList = [...list]
+    copyOfList.push
+      ({ task: task, id: copyOfList.length + 1 });
+    // fill
+    setList(copyOfList)
   }
-
-  const handleDelete = (dIdx) => {
-    const filteredContent = list.filter(function (task, idx) {
-      return idx !== dIdx;
+  const deleteTask = (task) => {
+    console.log("app " + task);
+    let filteredList = list.filter((taskObj) => {
+      return taskObj.task != task;
     })
-
-    updateList(filteredContent);
+    setList(filteredList)
   }
 
-  return (
-    <>
-      <div>Todo Example</div>
-      <InputTask addNewTask={addNewTask}></InputTask>
-      <TaskList list={list} handleDelete={handleDelete}></TaskList>
-    </>
+
+  return (<>
+    <InputBox addNewTask={addNewTask} ></InputBox>
+    <h1>----------------------------------</h1>
+    <TaskList list={list} deleteTask={deleteTask}></TaskList>
+  </>
   );
 }
-
-function InputTask(props) {
-
-  const { addNewTask } = props
-  const [cValue, setValue] = useState("");
-
-  const setCInput = (e) => {
-    console.log(e.target.value);
-    setValue(e.target.value);
+function InputBox(prop) {
+  let [cInput, setInput] = useState("");
+  let [count, setCount] = useState(0);
+  const setcInput = (e) => {
+    setInput(e.target.value)
   }
-
   const setFinalTask = () => {
-    addNewTask(cValue);
-    setValue("");
+    prop.addNewTask(cInput);
+    setInput("");
   }
+  // function cleanup() {
+  //   console.log("I am a cleanup");
+  // }
+  // useEffect(() => {
+  //   console.log("I will run in input");
+  //   return cleanup;
+  // }, [count]);
 
-  return (
-    <>
-      <div>InputTask</div>
-      <input type="text" value={cValue} onChange={setCInput}></input>
-      <input type="button" value="submit" onClick={setFinalTask}></input>
-    </>
+  return (<>
+    <input type="text" value={cInput}
+      onChange={setcInput}
+    />
+    <button type="button" onClick={setFinalTask}>add Task</button>
+
+    <button onClick={() => {
+      setCount(count + 1)
+    }}>+</button>
+    <span>{count}</span>
+    <button onClick={() => {
+      setCount(count - 1)
+    }}
+    >-</button>
+
+  </>
   )
 }
 
-function TaskList(props) {
-  const { list, handleDelete } = props;
+function TaskList(prop) {
+  // console.log("Hello from task list");
+  // no args
+  // function cleanup() {
+  //   console.log("I am cleanup");
+  // }
+  // useEffect(function () {
+  //   console.log("useEffect after return is printed");
+  //   return cleanup;
+  // });
 
-  const deleteTask = (task, idx) => {
-    console.log("Delete called to " + task + " delete this task");
-    handleDelete(idx);
-  }
-  return (
-    <>
-      <div>TaskList</div>
-      <br></br>
-      <h2>==============================================================</h2>
-      <>
-        {
-          list.map(function (task, idx) {
-            return <div key={idx}>
-              <div>{task}</div>
-              <input type="button" value="Delete" onClick={() => {
-                deleteTask(task, idx);
-              }}></input>
-            </div>
-          })
-        }
-      </>
-    </>
+  // empty array
+  // useEffect(function () {
+  //   console.log("useEffect after return is printed");
+  // }, []);
+  // console.log("Hello after from task List");
+
+
+  let { list, deleteTask } = prop;
+  return (list.map((taskObj, idx) => {
+    return (<ListItem taskObj={taskObj} deleteTask={deleteTask} key={idx}></ListItem>
+    )
+  })
   )
+}
+
+function ListItem(props) {
+  function cleanup() {
+    console.log("I am cleanup");
+  }
+useEffect(function () {
+    console.log("useEffect after return is printed");
+    return cleanup;
+  }, []);
+
+  let { taskObj, idx, deleteTask } = props;
+  return (
+    <div key={taskObj.id}>
+      <div >{taskObj.task}</div>
+      <button type="button"
+        onClick={() => { deleteTask(taskObj.task) }}
+      > Delete</button>
+    </div>
+  )
+
 }
 
 export default App;
