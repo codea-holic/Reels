@@ -8,7 +8,7 @@ function App() {
   const [theme, setTheme] = React.useState("light");
 
   const changeTheme = () => {
-    setTheme(theme == "light" ? "dark" : "light");
+    setTheme(theme === "light" ? "dark" : "light");
   }
 
   return (

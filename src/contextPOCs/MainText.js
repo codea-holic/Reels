@@ -12,7 +12,7 @@ function MainText() {
 
 function Paragraph() {
   let cTheme = React.useContext(ThemeContext);
-  const style = (cTheme == "light" ? 'bg-gray-800 text-gray-300' : 'bg-white text-black')
+  const style = (cTheme === "light" ? 'bg-gray-800 text-gray-300' : 'bg-white text-black')
   return (
     <div className={style}>
       Lorem Ipsum is simply dummy text of the printing and typesetting
