@@ -1,4 +1,5 @@
 import React from 'react'
+import { ThemeContext } from './ThemeChanger'
 
 function MainText() {
   return (
@@ -10,8 +11,10 @@ function MainText() {
 }
 
 function Paragraph() {
+  let cTheme = React.useContext(ThemeContext);
+  const style = (cTheme == "light" ? 'bg-gray-800 text-gray-300' : 'bg-white text-black')
   return (
-    <div className='bg-gray-800 text-gray-300'>
+    <div className={style}>
       Lorem Ipsum is simply dummy text of the printing and typesetting
       industry. Lorem Ipsum has been the industry's standard dummy text
       ever since the 1500s, when an unknown printer took a galley of type
