@@ -5,7 +5,7 @@ import Login from './Components/Login';
 import PageNotFound from './Components/PageNotFound';
 import Profile from './Components/Profile';
 import SignUp from './Components/SignUp';
-import { Routes, Route, Redirect, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 
 function App() {
