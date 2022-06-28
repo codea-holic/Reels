@@ -5,8 +5,6 @@ import secrets from "./secrets";
 let app = initializeApp(secrets);
 export let auth = getAuth(app);
 
-
-
 // I found the error : 
 /*
 Uncaught FirebaseError: Firebase: Error (auth/invalid-api-key).
