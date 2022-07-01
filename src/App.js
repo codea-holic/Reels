@@ -11,7 +11,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 function App() {
   return (
     <>
-      <div>NavBar</div>
+      {/* <div>NavBar</div> */}
       <Routes>
         <Route path="/" element={<Navigate to="/feed" />} />
         <Route path="/login" element={<Login />} />
