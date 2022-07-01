@@ -8,6 +8,7 @@ function SignUp() {
   let [fullName, setFullName] = useState("");
   let [loader, setLoader] = useState(false);
   let [error, setError] = useState("");
+  let [user, setUser] = useState("");
 
   const printDetails = () => {
     alert(`${email}\n${password}\n${fullName}`);
@@ -18,6 +19,7 @@ function SignUp() {
       setLoader(true);
       let userCred = await
         createUserWithEmailAndPassword(auth, email, password)
+        setUser(userCred.user);
     } catch (err) {
       setError(err.message);
       // after some time -> error message remove 
@@ -31,6 +33,7 @@ function SignUp() {
   return (
     error !== "" ? <strong>Error is {error}</strong> :
       loader === true ? <strong>...Loading</strong> :
+      user !== "" ? <strong>Signed Up user is {user.uid} </strong> :
         <>
           <input type="email" onChange={(e) => {
             setEmail(e.target.value);
