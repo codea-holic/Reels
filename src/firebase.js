@@ -1,9 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import secrets from "./secrets";
+import { getFirestore } from "firebase/firestore";
 
 let app = initializeApp(secrets);
 export let auth = getAuth(app);
+export const db = getFirestore(app);
 
 // I found the error : 
 /*
