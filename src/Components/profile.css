@@ -1,0 +1,30 @@
+/* body {
+    background-color: red;
+} */
+body {
+    margin: 0px;
+}
+
+.header {
+    height: 5rem;
+    border-bottom: solid 2px red;
+}
+
+.p-img {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}
+
+/* Useful for debug purpose
+.main > *{
+    border: 1px solid red;
+} */
+
+.main {
+    display: flex;
+}
+
+.details {
+    text-align: center;
+}
