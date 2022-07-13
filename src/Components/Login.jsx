@@ -1,24 +1,3 @@
-
-  useEffect(() => {
-    // ye aake call ho gya hai, ye function ek event listener ki tarah hai jaise onClick, onChange etc
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        // const uid = user.uid;
-        setUser(user);
-      } else {
-        // User is signed out
-        setUser(null);
-      }
-    });
-  }, []);
-
-
-
-After 1 commit and review... 
-
-
 import React, { useState } from 'react'
 import { auth, } from "../firebase";
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
